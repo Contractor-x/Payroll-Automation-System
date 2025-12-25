@@ -1,0 +1,12 @@
+streamlit
+fastapi
+uvicorn
+sqlalchemy
+bcrypt
+pyotp
+qrcode
+python-jose[cryptography]
+passlib
+requests
+python-dotenv
+apscheduler
