@@ -6,6 +6,7 @@ from backend.Config import settings
 from backend.auth.middleware import setup_middleware, lifespan
 from backend.routes import auth, worker, payment
 from backend.database import init_db
+from backend.services.Payment_scheduler import setup_scheduler, payment_scheduler
 
 
 def create_app() -> FastAPI:
@@ -52,6 +53,7 @@ def create_app() -> FastAPI:
             "app_name": settings.app_name,
             "version": settings.app_version,
             "database": "connected",
+            "scheduler_running": payment_scheduler.is_running,
             "timestamp": "2025-01-01T00:00:00Z"
         }
     
@@ -68,18 +70,57 @@ def create_app() -> FastAPI:
                 "auth": "/api/auth",
                 "workers": "/api/workers", 
                 "payments": "/api/payments"
+            },
+            "scheduler": {
+                "running": payment_scheduler.is_running,
+                "auto_payments": settings.auto_payment_enabled,
+                "schedule_hour": settings.payment_schedule_hour
             }
         }
+    
+    # Scheduler endpoints
+    @app.get("/api/scheduler/status")
+    async def get_scheduler_status():
+        """Get payment scheduler status"""
+        return payment_scheduler.get_payment_statistics()
+    
+    @app.get("/api/scheduler/jobs")
+    async def get_scheduled_jobs():
+        """Get list of scheduled jobs"""
+        return {"jobs": payment_scheduler.get_scheduled_jobs()}
+    
+    @app.post("/api/scheduler/reschedule")
+    async def reschedule_worker_payments():
+        """Reschedule all worker payments"""
+        payment_scheduler.reschedule_worker_payments()
+        return {"message": "Worker payments rescheduled"}
     
     # Initialize database on startup
     @app.on_event("startup")
     async def startup_event():
-        """Initialize database tables on startup"""
+        """Initialize database and scheduler on startup"""
         try:
             init_db()
             print("✅ Database initialized successfully")
         except Exception as e:
             print(f"❌ Database initialization failed: {e}")
+        
+        # Setup and start scheduler
+        try:
+            setup_scheduler()
+            print("✅ Payment scheduler initialized successfully")
+        except Exception as e:
+            print(f"❌ Scheduler initialization failed: {e}")
+    
+    @app.on_event("shutdown")
+    async def shutdown_event():
+        """Cleanup on shutdown"""
+        try:
+            from backend.services.Payment_scheduler import stop_scheduler
+            stop_scheduler()
+            print("✅ Payment scheduler stopped")
+        except Exception as e:
+            print(f"⚠️ Error stopping scheduler: {e}")
     
     return app
 

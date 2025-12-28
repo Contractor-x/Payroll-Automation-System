@@ -142,8 +142,7 @@ def login_page():
                             st.success("✅ Login successful! Please enter your 2FA code.")
                             st.rerun()
                         else:
-                            # No 2FA required — store access token and mark authenticated
-                            st.session_state.auth_token = response.get("access_token")
+                            # No 2FA required, get access token directly
                             st.session_state.authenticated = True
                             st.session_state.user_info = {"username": username}
                             st.rerun()
