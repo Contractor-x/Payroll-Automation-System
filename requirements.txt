@@ -10,3 +10,4 @@ passlib
 requests
 python-dotenv
 apscheduler
+pydantic-settings
