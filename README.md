@@ -87,7 +87,7 @@ payroll-automation-system/
 └── README.md                 # This file
 ```
 
-## 🚀 Quick Start Guide
+##  Quick Start Guide
 
 ### Prerequisites
 - Python 3.8 or higher
