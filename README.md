@@ -2,7 +2,7 @@
 
 A secure, production-ready payroll automation system built with FastAPI, Streamlit, and Paystack integration. This system enables automatic salary payments, worker management, and comprehensive audit trails with bank-level security.
 
-## 🚀 Features
+## Features
 
 ### Core Functionality
 - **Secure Authentication**: Password + 2FA (Google Authenticator) login
