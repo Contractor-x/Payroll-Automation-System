@@ -47,7 +47,7 @@ A secure, production-ready payroll automation system built with FastAPI, Streaml
 - **Paystack**: Nigerian payment gateway
 - **Bank Integration**: Support for all Nigerian banks
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 payroll-automation-system/
