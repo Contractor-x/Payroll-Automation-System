@@ -295,7 +295,7 @@ flake8 backend frontend scripts
 mypy backend
 ```
 
-## 🚀 Deployment
+##  Deployment
 
 ### Production Deployment
 
