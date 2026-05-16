@@ -1,4 +1,4 @@
-# 💰 Payroll Automation System
+#  Payroll Automation System
 
 A secure, production-ready payroll automation system built with FastAPI, Streamlit, and Paystack integration. This system enables automatic salary payments, worker management, and comprehensive audit trails with bank-level security.
 
