@@ -353,7 +353,7 @@ CMD ["uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8000"]
 - 30-day retention policy
 - Point-in-time recovery capability
 
-## 🆘 Troubleshooting
+##  Troubleshooting
 
 ### Common Issues
 
