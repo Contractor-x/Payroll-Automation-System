@@ -27,7 +27,7 @@ A secure, production-ready payroll automation system built with FastAPI, Streaml
 - **Payment History**: Complete transaction records
 - **Balance Monitoring**: Real-time Paystack account balance
 
-## 🏗 Tech Stack
+##  Tech Stack
 
 ### Backend
 - **FastAPI**: Modern, fast Python web framework
