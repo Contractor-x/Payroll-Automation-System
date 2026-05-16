@@ -187,7 +187,7 @@ streamlit run frontend/app.py --server.port 8501
 - Export to CSV
 - Track payment references
 
-## 🔐 Security Configuration
+##  Security Configuration
 
 ### Password Policy
 - Minimum 8 characters
